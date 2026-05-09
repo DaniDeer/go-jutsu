@@ -133,9 +133,9 @@ func main() {
 	// Consume flattened stream
 	fmt.Println("Receiving values from flattened stream:")
 	for val := range flattened {
-		fmt.Printf("  Received: %d\\n", val)
+		fmt.Printf("  Received: %d\n", val)
 		time.Sleep(50 * time.Millisecond)
 	}
 
-	fmt.Println("\\nAll batches processed sequentially")
+	fmt.Println("\nAll batches processed sequentially")
 }

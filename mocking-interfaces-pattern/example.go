@@ -70,7 +70,7 @@ type Email struct {
 
 func (m *MockEmailSender) Send(to, subject, body string) error {
 	m.sent = append(m.sent, Email{to, subject, body})
-	fmt.Printf("  [Mock] Email sent to %s: %s\\n", to, subject)
+	fmt.Printf("  [Mock] Email sent to %s: %s\n", to, subject)
 	return nil
 }
 
@@ -94,27 +94,27 @@ func main() {
 		Name:  "Alice",
 	}
 
-	fmt.Println("\\nTesting user registration:")
+	fmt.Println("\nTesting user registration:")
 	err := svc.Register(user)
 	if err != nil {
-		fmt.Printf("Error: %v\\n", err)
+		fmt.Printf("Error: %v\n", err)
 		return
 	}
 
 	// Verify mock behavior
-	fmt.Println("\\nVerifying mocks:")
+	fmt.Println("\nVerifying mocks:")
 	if len(mockStore.saved) == 1 {
-		fmt.Printf("✓ User saved: %s\\n", mockStore.saved[0].Name)
+		fmt.Printf("✓ User saved: %s\n", mockStore.saved[0].Name)
 	}
 
 	if len(mockEmail.sent) == 1 {
-		fmt.Printf("✓ Email sent: %v\\n", mockEmail.sent[0])
+		fmt.Printf("✓ Email sent: %v\n", mockEmail.sent[0])
 	}
 
 	// Verify retrieval
-	fmt.Println("\\nTesting retrieval:")
+	fmt.Println("\nTesting retrieval:")
 	retrieved, _ := mockStore.Get(1)
 	if retrieved.Name == "Alice" {
-		fmt.Printf("✓ Retrieved user: %s\\n", retrieved.Name)
+		fmt.Printf("✓ Retrieved user: %s\n", retrieved.Name)
 	}
 }

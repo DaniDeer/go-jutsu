@@ -56,7 +56,7 @@ func GetLogger() (*Logger, error) {
 
 func (l *Logger) Log(msg string) {
 	if l != nil && l.file != nil {
-		fmt.Fprintf(l.file, "[%s] %s\\n", time.Now().Format(time.RFC3339), msg)
+		fmt.Fprintf(l.file, "[%s] %s\n", time.Now().Format(time.RFC3339), msg)
 	}
 }
 
@@ -91,27 +91,27 @@ func main() {
 	fmt.Println("=== Example 1: Config Singleton ===")
 	for i := 0; i < 3; i++ {
 		cfg := GetConfig()
-		fmt.Printf("Call %d: %s v%s\\n", i+1, cfg.AppName, cfg.Version)
+		fmt.Printf("Call %d: %s v%s\n", i+1, cfg.AppName, cfg.Version)
 	}
 
 	// Example 2: Concurrent access (initialization only once)
-	fmt.Println("\\n=== Example 2: Concurrent Singleton ===")
+	fmt.Println("\n=== Example 2: Concurrent Singleton ===")
 	var wg sync.WaitGroup
 	for i := 0; i < 5; i++ {
 		wg.Add(1)
 		go func(id int) {
 			defer wg.Done()
 			db := GetDB()
-			fmt.Printf("Goroutine %d: DB DSN = %s\\n", id, db.dsn)
+			fmt.Printf("Goroutine %d: DB DSN = %s\n", id, db.dsn)
 		}(i)
 	}
 	wg.Wait()
 
 	// Example 3: Singleton with error handling
-	fmt.Println("\\n=== Example 3: Logger Singleton ===")
+	fmt.Println("\n=== Example 3: Logger Singleton ===")
 	log, err := GetLogger()
 	if err != nil {
-		fmt.Printf("Error: %v\\n", err)
+		fmt.Printf("Error: %v\n", err)
 		return
 	}
 	defer log.Close()
@@ -123,11 +123,11 @@ func main() {
 	logFile := log.file.Name()
 	log.Close()
 	content, _ := os.ReadFile(logFile)
-	fmt.Printf("Log contents:\\n%s", content)
+	fmt.Printf("Log contents:\n%s", content)
 	os.Remove(logFile)
 
 	// Example 4: Demonstrate sync.Once never resets
-	fmt.Println("\\n=== Example 4: Once Never Resets ===")
+	fmt.Println("\n=== Example 4: Once Never Resets ===")
 	var counter int
 	var testOnce sync.Once
 
@@ -141,13 +141,13 @@ func main() {
 		fmt.Println("  Second Do() call (never printed)")
 	})
 
-	fmt.Printf("Counter: %d (should be 1)\\n", counter)
+	fmt.Printf("Counter: %d (should be 1)\n", counter)
 
 	// Example 5: Benchmark - compare with regular initialization
-	fmt.Println("\\n=== Example 5: Performance Note ===")
+	fmt.Println("\n=== Example 5: Performance Note ===")
 	start := time.Now()
 	for i := 0; i < 1000000; i++ {
 		_ = GetConfig() // Cached, very fast
 	}
-	fmt.Printf("1M singleton calls: %v\\n", time.Since(start))
+	fmt.Printf("1M singleton calls: %v\n", time.Since(start))
 }

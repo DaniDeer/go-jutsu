@@ -14,7 +14,7 @@ type Logger interface {
 type ConsoleLogger struct{}
 
 func (l *ConsoleLogger) Log(msg string) {
-	fmt.Printf("[CONSOLE] %s\\n", msg)
+	fmt.Printf("[CONSOLE] %s\n", msg)
 }
 
 type FileLogger struct {
@@ -22,7 +22,7 @@ type FileLogger struct {
 }
 
 func (l *FileLogger) Log(msg string) {
-	fmt.Printf("[FILE:%s] %s\\n", l.path, msg)
+	fmt.Printf("[FILE:%s] %s\n", l.path, msg)
 }
 
 type NullLogger struct{}
@@ -91,11 +91,11 @@ func main() {
 	// Try unknown type
 	_, err := NewLogger("unknown", nil)
 	if err != nil {
-		fmt.Printf("✓ Error caught: %v\\n", err)
+		fmt.Printf("✓ Error caught: %v\n", err)
 	}
 
 	// Dynamic registration (plugin system)
-	fmt.Println("\\nDynamic registration:")
+	fmt.Println("\nDynamic registration:")
 	RegisterLogger("custom", func(cfg map[string]string) Logger {
 		return &ConsoleLogger{} // Custom implementation
 	})

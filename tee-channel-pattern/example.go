@@ -85,7 +85,7 @@ func main() {
 	// Consumer 1: Print values
 	go func() {
 		for val := range ch1 {
-			fmt.Printf("Consumer 1: %d\\n", val)
+			fmt.Printf("Consumer 1: %d\n", val)
 			time.Sleep(50 * time.Millisecond)
 		}
 	}()
@@ -93,12 +93,12 @@ func main() {
 	// Consumer 2: Print squares
 	go func() {
 		for val := range ch2 {
-			fmt.Printf("Consumer 2: %d² = %d\\n", val, val*val)
+			fmt.Printf("Consumer 2: %d² = %d\n", val, val*val)
 			time.Sleep(50 * time.Millisecond)
 		}
 	}()
 
 	// Wait for completion
 	time.Sleep(500 * time.Millisecond)
-	fmt.Println("\\nBoth consumers received all values")
+	fmt.Println("\nBoth consumers received all values")
 }

@@ -75,19 +75,19 @@ func main() {
 	files := []string{"file1.txt", "file2.txt", "file3.txt", "file4.txt", "file5.txt"}
 	start := time.Now()
 	ProcessFiles(files, 3)
-	fmt.Printf("Completed in %v\\n", time.Since(start))
+	fmt.Printf("Completed in %v\n", time.Since(start))
 
 	// Example 2: With context cancellation
-	fmt.Println("\\n=== Example 2: With Context ===")
+	fmt.Println("\n=== Example 2: With Context ===")
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 
 	items := []int{1, 2, 3, 4, 5, 6, 7, 8}
 	results := ProcessWithContext(ctx, items, 2)
-	fmt.Printf("Processed %d items: %v\\n", len(results), results)
+	fmt.Printf("Processed %d items: %v\n", len(results), results)
 
 	// Example 3: Compare unlimited vs bounded
-	fmt.Println("\\n=== Example 3: Comparison ===")
+	fmt.Println("\n=== Example 3: Comparison ===")
 	n := 10
 
 	// Unlimited goroutines
@@ -101,10 +101,10 @@ func main() {
 		}()
 	}
 	wg.Wait()
-	fmt.Printf("Unlimited (%d goroutines): %v\\n", n, time.Since(start))
+	fmt.Printf("Unlimited (%d goroutines): %v\n", n, time.Since(start))
 
 	// Bounded to 3
 	start = time.Now()
 	ProcessFiles(make([]string, n), 3)
-	fmt.Printf("Bounded (3 workers): %v\\n", time.Since(start))
+	fmt.Printf("Bounded (3 workers): %v\n", time.Since(start))
 }

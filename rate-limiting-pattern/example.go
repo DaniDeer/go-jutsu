@@ -88,11 +88,11 @@ func main() {
 	start := time.Now()
 	for i := 0; i < 8; i++ {
 		limiter.Wait()
-		fmt.Printf("Request %d at %v\\n", i+1, time.Since(start).Round(time.Millisecond))
+		fmt.Printf("Request %d at %v\n", i+1, time.Since(start).Round(time.Millisecond))
 	}
 
 	// Example 2: Token bucket with burst
-	fmt.Println("\\n=== Example 2: Token Bucket (2/sec, burst 5) ===")
+	fmt.Println("\n=== Example 2: Token Bucket (2/sec, burst 5) ===")
 	bucket := NewTokenBucket(2, 5)
 
 	// Burst requests (should allow first 5 immediately)
@@ -100,28 +100,28 @@ func main() {
 	fmt.Println("Burst requests:")
 	for i := 0; i < 7; i++ {
 		if bucket.Allow() {
-			fmt.Printf("  Request %d allowed at %v\\n", i+1, time.Since(start).Round(time.Millisecond))
+			fmt.Printf("  Request %d allowed at %v\n", i+1, time.Since(start).Round(time.Millisecond))
 		} else {
-			fmt.Printf("  Request %d BLOCKED at %v\\n", i+1, time.Since(start).Round(time.Millisecond))
+			fmt.Printf("  Request %d BLOCKED at %v\n", i+1, time.Since(start).Round(time.Millisecond))
 		}
 	}
 
 	// Example 3: Wait for token
-	fmt.Println("\\n=== Example 3: Wait for Token ===")
+	fmt.Println("\n=== Example 3: Wait for Token ===")
 	ctx := context.Background()
 	start = time.Now()
 	for i := 0; i < 3; i++ {
 		bucket.Wait(ctx)
-		fmt.Printf("Request %d at %v\\n", i+1, time.Since(start).Round(10*time.Millisecond))
+		fmt.Printf("Request %d at %v\n", i+1, time.Since(start).Round(10*time.Millisecond))
 	}
 
 	// Example 4: With context cancellation
-	fmt.Println("\\n=== Example 4: Context Cancellation ===")
+	fmt.Println("\n=== Example 4: Context Cancellation ===")
 	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Millisecond)
 	defer cancel()
 
 	err := bucket.Wait(ctx)
 	if err != nil {
-		fmt.Printf("✓ Wait cancelled: %v\\n", err)
+		fmt.Printf("✓ Wait cancelled: %v\n", err)
 	}
 }

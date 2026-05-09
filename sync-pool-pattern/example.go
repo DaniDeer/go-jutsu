@@ -51,7 +51,7 @@ func HandleRequest(id int, data []byte) {
 
 	req.ID = id
 	req.Data = append(req.Data, data...)
-	fmt.Printf("Request %d: %d bytes\\n", req.ID, len(req.Data))
+	fmt.Printf("Request %d: %d bytes\n", req.ID, len(req.Data))
 }
 
 // Example 3: Benchmark comparison
@@ -83,13 +83,13 @@ func main() {
 	}
 
 	// Example 2: Custom struct pool
-	fmt.Println("\\n=== Example 2: Request Pool ===")
+	fmt.Println("\n=== Example 2: Request Pool ===")
 	for i := 0; i < 3; i++ {
 		HandleRequest(i, []byte(fmt.Sprintf("data-%d", i)))
 	}
 
 	// Example 3: Concurrent usage
-	fmt.Println("\\n=== Example 3: Concurrent Pool Usage ===")
+	fmt.Println("\n=== Example 3: Concurrent Pool Usage ===")
 	var wg sync.WaitGroup
 	for i := 0; i < 10; i++ {
 		wg.Add(1)
@@ -101,7 +101,7 @@ func main() {
 	wg.Wait()
 
 	// Example 4: Pool statistics (demonstrate pool may be cleared)
-	fmt.Println("\\n=== Example 4: Pool Behavior ===")
+	fmt.Println("\n=== Example 4: Pool Behavior ===")
 	buf1 := bufferPool.Get().(*bytes.Buffer)
 	buf1.WriteString("marker")
 	bufferPool.Put(buf1)

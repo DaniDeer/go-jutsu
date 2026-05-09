@@ -42,15 +42,15 @@ func main() {
 	for _, tt := range tests {
 		got := Square(tt.input)
 		if got != tt.want {
-			fmt.Printf("FAIL %s: Square(%d) = %d, want %d\\n",
+			fmt.Printf("FAIL %s: Square(%d) = %d, want %d\n",
 				tt.name, tt.input, got, tt.want)
 		} else {
-			fmt.Printf("PASS %s\\n", tt.name)
+			fmt.Printf("PASS %s\n", tt.name)
 		}
 	}
 
 	// Example 2: With error handling
-	fmt.Println("\\n=== Example 2: Divide Function ===")
+	fmt.Println("\n=== Example 2: Divide Function ===")
 	divTests := []struct {
 		name    string
 		a, b    int
@@ -66,19 +66,19 @@ func main() {
 		got, err := Divide(tt.a, tt.b)
 		hasErr := err != nil
 		if hasErr != tt.wantErr {
-			fmt.Printf("FAIL %s: error = %v, wantErr %v\\n",
+			fmt.Printf("FAIL %s: error = %v, wantErr %v\n",
 				tt.name, err, tt.wantErr)
 			continue
 		}
 		if !tt.wantErr && got != tt.want {
-			fmt.Printf("FAIL %s: got %d, want %d\\n", tt.name, got, tt.want)
+			fmt.Printf("FAIL %s: got %d, want %d\n", tt.name, got, tt.want)
 			continue
 		}
-		fmt.Printf("PASS %s\\n", tt.name)
+		fmt.Printf("PASS %s\n", tt.name)
 	}
 
 	// Example 3: Multiple assertions
-	fmt.Println("\\n=== Example 3: URL Parser ===")
+	fmt.Println("\n=== Example 3: URL Parser ===")
 	urlTests := []struct {
 		name     string
 		input    string
@@ -109,19 +109,19 @@ func main() {
 		hasErr := err != nil
 
 		if hasErr != tt.wantErr {
-			fmt.Printf("FAIL %s: error = %v, wantErr %v\\n",
+			fmt.Printf("FAIL %s: error = %v, wantErr %v\n",
 				tt.name, err, tt.wantErr)
 			continue
 		}
 
 		if !tt.wantErr {
 			if got["host"] != tt.wantHost {
-				fmt.Printf("FAIL %s: host = %s, want %s\\n",
+				fmt.Printf("FAIL %s: host = %s, want %s\n",
 					tt.name, got["host"], tt.wantHost)
 				continue
 			}
 		}
 
-		fmt.Printf("PASS %s\\n", tt.name)
+		fmt.Printf("PASS %s\n", tt.name)
 	}
 }

@@ -101,7 +101,7 @@ func main() {
 	fmt.Println(greeting)
 
 	// Example 2: SQL generation
-	fmt.Println("\\n=== Example 2: SQL Builder ===")
+	fmt.Println("\n=== Example 2: SQL Builder ===")
 	sql := BuildInsertSQL(
 		"users",
 		[]string{"name", "age", "email"},
@@ -113,12 +113,12 @@ func main() {
 	fmt.Println(sql)
 
 	// Example 3: HTML generation
-	fmt.Println("\\n=== Example 3: HTML Builder ===")
+	fmt.Println("\n=== Example 3: HTML Builder ===")
 	html := BuildHTML("My Page", []string{"Item 1", "Item 2", "Item 3"})
 	fmt.Println(html)
 
 	// Example 4: Performance comparison
-	fmt.Println("\\n=== Example 4: Performance Comparison ===")
+	fmt.Println("\n=== Example 4: Performance Comparison ===")
 	n := 10000
 
 	start := time.Now()
@@ -129,14 +129,14 @@ func main() {
 	_ = concatenateWithBuilder(n)
 	builderDuration := time.Since(start)
 
-	fmt.Printf("Concatenate %d strings:\\n", n)
-	fmt.Printf("  Using +: %v\\n", plusDuration)
-	fmt.Printf("  Using Builder: %v\\n", builderDuration)
-	fmt.Printf("  Speedup: %.1fx\\n",
+	fmt.Printf("Concatenate %d strings:\n", n)
+	fmt.Printf("  Using +: %v\n", plusDuration)
+	fmt.Printf("  Using Builder: %v\n", builderDuration)
+	fmt.Printf("  Speedup: %.1fx\n",
 		float64(plusDuration)/float64(builderDuration))
 
 	// Example 5: Grow optimization
-	fmt.Println("\\n=== Example 5: Grow() Optimization ===")
+	fmt.Println("\n=== Example 5: Grow() Optimization ===")
 
 	start = time.Now()
 	var b1 strings.Builder
@@ -155,13 +155,13 @@ func main() {
 	_ = b2.String()
 	withGrow := time.Since(start)
 
-	fmt.Printf("Without Grow: %v\\n", noGrow)
-	fmt.Printf("With Grow: %v\\n", withGrow)
+	fmt.Printf("Without Grow: %v\n", noGrow)
+	fmt.Printf("With Grow: %v\n", withGrow)
 
 	// Example 6: fmt.Fprintf with Builder
-	fmt.Println("\\n=== Example 6: fmt.Fprintf Support ===")
+	fmt.Println("\n=== Example 6: fmt.Fprintf Support ===")
 	var b strings.Builder
-	fmt.Fprintf(&b, "User: %s (ID: %d)\\n", "Alice", 123)
-	fmt.Fprintf(&b, "Status: %s\\n", "active")
+	fmt.Fprintf(&b, "User: %s (ID: %d)\n", "Alice", 123)
+	fmt.Fprintf(&b, "Status: %s\n", "active")
 	fmt.Print(b.String())
 }

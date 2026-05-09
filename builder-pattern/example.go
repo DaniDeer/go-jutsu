@@ -123,18 +123,18 @@ func main() {
 		Timeout(5 * time.Second).
 		Build()
 
-	fmt.Printf("Request: %s %s\\n", req.Method, req.URL)
-	fmt.Printf("Headers: %v\\n", req.Headers)
-	fmt.Printf("Timeout: %v\\n", req.Timeout)
+	fmt.Printf("Request: %s %s\n", req.Method, req.URL)
+	fmt.Printf("Headers: %v\n", req.Headers)
+	fmt.Printf("Timeout: %v\n", req.Timeout)
 
 	// Example 2: Server Builder with defaults
-	fmt.Println("\\n=== Example 2: Server with Defaults ===")
+	fmt.Println("\n=== Example 2: Server with Defaults ===")
 	server1, _ := NewServerBuilder().Build()
-	fmt.Printf("Default: %s:%d (max: %d conns)\\n",
+	fmt.Printf("Default: %s:%d (max: %d conns)\n",
 		server1.host, server1.port, server1.maxConns)
 
 	// Example 3: Custom server configuration
-	fmt.Println("\\n=== Example 3: Custom Server ===")
+	fmt.Println("\n=== Example 3: Custom Server ===")
 	server2, err := NewServerBuilder().
 		Host("0.0.0.0").
 		Port(9000).
@@ -143,22 +143,22 @@ func main() {
 		Build()
 
 	if err != nil {
-		fmt.Printf("Error: %v\\n", err)
+		fmt.Printf("Error: %v\n", err)
 	} else {
-		fmt.Printf("Custom: %s:%d\\n", server2.host, server2.port)
-		fmt.Printf("Timeouts: read=%v, write=%v\\n",
+		fmt.Printf("Custom: %s:%d\n", server2.host, server2.port)
+		fmt.Printf("Timeouts: read=%v, write=%v\n",
 			server2.readTimeout, server2.writeTimeout)
 	}
 
 	// Example 4: Validation
-	fmt.Println("\\n=== Example 4: Validation ===")
+	fmt.Println("\n=== Example 4: Validation ===")
 	_, err = NewServerBuilder().Port(99999).Build()
 	if err != nil {
-		fmt.Printf("✓ Validation caught error: %v\\n", err)
+		fmt.Printf("✓ Validation caught error: %v\n", err)
 	}
 
 	// Example 5: Reusable builder (antipattern)
-	fmt.Println("\\n=== Example 5: Builder Reuse (Careful!) ===")
+	fmt.Println("\n=== Example 5: Builder Reuse (Careful!) ===")
 	builder := NewHTTPRequestBuilder().
 		Method("POST").
 		URL("/api/data")
@@ -167,6 +167,6 @@ func main() {
 	req1 := builder.Header("X-Version", "1").Build()
 	req2 := builder.Header("X-Version", "2").Build()
 
-	fmt.Printf("Req1 version: %s\\n", req1.Headers["X-Version"])
-	fmt.Printf("Req2 version: %s\\n", req2.Headers["X-Version"])
+	fmt.Printf("Req1 version: %s\n", req1.Headers["X-Version"])
+	fmt.Printf("Req2 version: %s\n", req2.Headers["X-Version"])
 }
