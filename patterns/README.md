@@ -36,3 +36,11 @@ Each pattern file includes:
 - [Embedding Composition Pattern](./embedding-composition-pattern.md)
 - [Method Values vs Expressions](./method-values-expressions-pattern.md)
 - [Type Switch Pattern](./type-switch-pattern.md)
+
+### Functional & Declarative (5)
+
+- [Map/Filter/Reduce with Generics](./map-filter-reduce-generics.md)
+- [Pipeline Pattern](./pipeline-pattern.md)
+- [Function Composition Pattern](./function-composition-pattern.md)
+- [Table-Driven Design](./table-driven-design-pattern.md)
+- [Generator Pattern](./generator-pattern.md)

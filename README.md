@@ -34,6 +34,14 @@ Collection of Go idioms, patterns, and techniques that aren't always obvious whe
 - [Method Values vs Expressions Pattern](./patterns/method-values-expressions-pattern.md) - Methods as closures vs functions
 - [Type Switch Pattern](./patterns/type-switch-pattern.md) - Type-specific handling with switch
 
+### Functional & Declarative
+
+- [Map/Filter/Reduce with Generics](./patterns/map-filter-reduce-generics.md) - Higher-order functions for transformations (Go 1.18+)
+- [Pipeline Pattern](./patterns/pipeline-pattern.md) - Channel-based stream processing with fan-out/fan-in
+- [Function Composition Pattern](./patterns/function-composition-pattern.md) - Combine functions to build complex operations
+- [Table-Driven Design Pattern](./patterns/table-driven-design-pattern.md) - Data structures drive logic (idiomatic Go)
+- [Generator Pattern](./patterns/generator-pattern.md) - Lazy evaluation with infinite sequences
+
 ## Structure
 
 ```
