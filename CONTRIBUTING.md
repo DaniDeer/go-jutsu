@@ -20,29 +20,66 @@ Found a cool Go pattern? Want to add an example? Contributions welcome!
 
 ## How to Add a Pattern
 
-1. **Create pattern file** in `patterns/`
+1. **Create pattern directory**
+
+   ```bash
+   mkdir pattern-name/
+   ```
+
+   - Use kebab-case (e.g., `worker-pool-pattern`)
+   - Name should be descriptive and searchable
+
+2. **Create pattern.md**
    - Use template from `.github/copilot-instructions.md`
    - Keep under 500 words
-   - Include working code
+   - Include working code examples
 
-2. **Create example** in `examples/`
-   - Must run standalone
-   - Add to `examples/README.md`
+3. **Create example.go**
+   - Must run standalone: `go run example.go`
+   - Demonstrates core concept clearly
+   - Keep under 100 lines when possible
 
-3. **Update main README**
-   - Add to patterns list
+4. **Update main README.md**
+   - Add link to your pattern directory
+   - Place in appropriate category
    - Keep formatting consistent
 
-4. **Open PR**
+5. **Validate your work**
+
+   ```bash
+   cd pattern-name/
+   go run example.go              # Test it works
+   cd ..
+   ./maintain.sh validate         # Check structure
+   ./maintain.sh check            # Verify compilation
+   ./maintain.sh format           # Format code
+   ```
+
+6. **Open PR**
    - Title: "Add [pattern name] pattern"
    - Describe why pattern is useful
+   - Show example output if relevant
 
 ## Code Guidelines
 
-- Run `gofmt` before committing
-- Keep examples under 100 lines
+- Run `gofmt` before committing (or use `./maintain.sh format`)
+- Keep examples under 100 lines when possible
 - Use standard library when possible
 - Comment the "why", not "what"
+- Each pattern must be self-contained in its directory
+- Examples must run with `go run example.go` from pattern directory
+
+## Repository Structure
+
+Each pattern lives in its own directory:
+
+```
+pattern-name/
+├── pattern.md    # Documentation with explanation and gotchas
+└── example.go    # Runnable code demonstrating the pattern
+```
+
+Browse existing patterns for reference before adding new ones.
 
 ## Questions?
 

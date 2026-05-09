@@ -6,49 +6,92 @@ Advanced Go patterns and techniques discovered while mastering the way of the Go
 
 Collection of Go idioms, patterns, and techniques that aren't always obvious when learning Go. Each pattern includes clear explanations, real-world examples, and gotchas to avoid.
 
-## Patterns
+## Patterns (37 Total)
+
+Each pattern is self-contained in its own directory with documentation (`pattern.md`) and runnable example (`example.go`).
 
 ### Foundational Patterns
 
-- [Closure Pattern (Manual "Currying")](./patterns/go-closure-currying-pattern.md) - HTTP middleware factory using closures
-- [Defer Cleanup Pattern](./patterns/defer-cleanup-pattern.md) - Stack-based cleanup, LIFO execution (Go-specific)
-- [Empty Struct Signal Pattern](./patterns/empty-struct-signal-pattern.md) - Zero-byte signaling with `struct{}` (Go-specific)
-- [Zero Values Pattern](./patterns/zero-values-pattern.md) - Useful zero values by design (Go philosophy)
+- [Closure Pattern (Manual "Currying")](./go-closure-currying-pattern/) - HTTP middleware factory using closures
+- [Defer Cleanup Pattern](./defer-cleanup-pattern/) - Stack-based cleanup, LIFO execution (Go-specific)
+- [Empty Struct Signal Pattern](./empty-struct-signal-pattern/) - Zero-byte signaling with `struct{}` (Go-specific)
+- [Zero Values Pattern](./zero-values-pattern/) - Useful zero values by design (Go philosophy)
 
 ### Gotchas & Idioms
 
-- [Nil Interface Gotcha](./patterns/nil-interface-gotcha.md) - Interface with nil value isn't nil (classic trap)
-- [Comma-Ok Idiom](./patterns/comma-ok-idiom.md) - Safe map/channel/type access with two-value returns
-- [Blank Identifier Pattern](./patterns/blank-identifier-pattern.md) - Using `_` for ignoring values and side effects
+- [Nil Interface Gotcha](./nil-interface-gotcha/) - Interface with nil value isn't nil (classic trap)
+- [Comma-Ok Idiom](./comma-ok-idiom/) - Safe map/channel/type access with two-value returns
+- [Blank Identifier Pattern](./blank-identifier-pattern/) - Using `_` for ignoring values and side effects
+
+### Error Handling
+
+- [Sentinel Errors Pattern](./sentinel-errors-pattern/) - Predefined error values with `errors.Is()`
+- [Error Wrapping Pattern](./error-wrapping-pattern/) - Add context with `fmt.Errorf("%w")` and `errors.Unwrap/As`
+- [Panic and Recover Pattern](./panic-recover-pattern/) - Emergency handling with defer + recover
 
 ### Concurrency
 
-- [Select Statement Pattern](./patterns/select-statement-pattern.md) - Non-deterministic channel multiplexing
-- [Context Propagation Pattern](./patterns/context-propagation-pattern.md) - Cancellation and deadline propagation
+- [Select Statement Pattern](./select-statement-pattern/) - Non-deterministic channel multiplexing
+- [Context Propagation Pattern](./context-propagation-pattern/) - Cancellation and deadline propagation
+- [Worker Pool Pattern](./worker-pool-pattern/) - Fixed goroutines processing job queue
+- [Circuit Breaker Pattern](./circuit-breaker-pattern/) - Prevent cascading failures with state machine
+- [Rate Limiting Pattern](./rate-limiting-pattern/) - Control request rate with token bucket
+- [Bounded Parallelism Pattern](./bounded-parallelism-pattern/) - Semaphore limits concurrent goroutines
 
 ### Advanced Patterns
 
-- [Functional Options Pattern](./patterns/functional-options-pattern.md) - Clean configuration with option functions
-- [Interface Satisfaction Pattern](./patterns/interface-satisfaction-pattern.md) - Implicit interface implementation
-- [Embedding Composition Pattern](./patterns/embedding-composition-pattern.md) - Composition over inheritance
-- [Method Values vs Expressions Pattern](./patterns/method-values-expressions-pattern.md) - Methods as closures vs functions
-- [Type Switch Pattern](./patterns/type-switch-pattern.md) - Type-specific handling with switch
+- [Functional Options Pattern](./functional-options-pattern/) - Clean configuration with option functions
+- [Interface Satisfaction Pattern](./interface-satisfaction-pattern/) - Implicit interface implementation
+- [Embedding Composition Pattern](./embedding-composition-pattern/) - Composition over inheritance
+- [Method Values vs Expressions Pattern](./method-values-expressions-pattern/) - Methods as closures vs functions
+- [Type Switch Pattern](./type-switch-pattern/) - Type-specific handling with switch
+- [Singleton with sync.Once](./singleton-sync-once-pattern/) - Thread-safe lazy initialization
+- [Builder Pattern](./builder-pattern/) - Fluent API for complex object construction
+- [Factory Pattern](./factory-pattern/) - Registry of constructors for extensibility
 
 ### Functional & Declarative
 
-- [Map/Filter/Reduce with Generics](./patterns/map-filter-reduce-generics.md) - Higher-order functions for transformations (Go 1.18+)
-- [Pipeline Pattern](./patterns/pipeline-pattern.md) - Channel-based stream processing with fan-out/fan-in
-- [Function Composition Pattern](./patterns/function-composition-pattern.md) - Combine functions to build complex operations
-- [Table-Driven Design Pattern](./patterns/table-driven-design-pattern.md) - Data structures drive logic (idiomatic Go)
-- [Generator Pattern](./patterns/generator-pattern.md) - Lazy evaluation with infinite sequences
+- [Map/Filter/Reduce with Generics](./map-filter-reduce-generics/) - Higher-order functions for transformations (Go 1.18+)
+- [Pipeline Pattern](./pipeline-pattern/) - Channel-based stream processing with fan-out/fan-in
+- [Function Composition Pattern](./function-composition-pattern/) - Combine functions to build complex operations
+- [Table-Driven Design Pattern](./table-driven-design-pattern/) - Data structures drive logic (idiomatic Go)
+- [Generator Pattern](./generator-pattern/) - Lazy evaluation with infinite sequences
+
+### Testing Patterns
+
+- [Mocking Interfaces Pattern](./mocking-interfaces-pattern/) - Test doubles with dependency injection
+- [Table Subtests Pattern](./table-subtests-pattern/) - Data-driven tests with `t.Run()`
+- [Golden Files Pattern](./golden-files-pattern/) - Snapshot testing for complex outputs
+
+### Advanced Channels
+
+- [Or-Done Channel Pattern](./or-done-channel-pattern/) - Wrap channels with cancellation signal
+- [Tee Channel Pattern](./tee-channel-pattern/) - Duplicate channel values to multiple consumers
+- [Bridge Channel Pattern](./bridge-channel-pattern/) - Flatten channel of channels
+
+### Performance
+
+- [sync.Pool Pattern](./sync-pool-pattern/) - Object reuse to reduce GC pressure
+- [String Builder Pattern](./string-builder-pattern/) - Efficient string concatenation with `strings.Builder`
 
 ## Structure
 
+Each pattern lives in its own directory containing:
+
 ```
-go-jutsu/
-├── patterns/          # Pattern explanations and guides
-├── examples/          # Runnable code examples
-└── cheatsheets/       # Quick reference cards
+pattern-name/
+├── pattern.md    # Explanation, examples, gotchas
+└── example.go    # Runnable demonstration
+```
+
+Browse patterns:
+
+```bash
+cd go-jutsu/
+ls -d */                    # List all patterns
+cd worker-pool-pattern/     # Enter a pattern
+cat pattern.md              # Read explanation
+go run example.go           # Run example
 ```
 
 ## Philosophy
@@ -70,8 +113,11 @@ Helper script for keeping repo clean:
 ./maintain.sh validate   # Check structure consistency
 ```
 
+```
+
 See [`.github/copilot-instructions.md`](./.github/copilot-instructions.md) for agent guide on adding patterns.
 
 ## Contributing
 
 Found a cool pattern? See [CONTRIBUTING.md](./CONTRIBUTING.md). PRs welcome!
+```

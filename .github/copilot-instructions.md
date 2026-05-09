@@ -6,17 +6,26 @@ Repository for Go patterns, idioms, techniques discovered while learning. Keep c
 
 ```
 go-jutsu/
-├── patterns/          # Deep explanations of patterns
-├── examples/          # Runnable Go code demonstrating patterns
-├── cheatsheets/       # Quick reference cards
-└── README.md          # Main index
+├── pattern-name-1/
+│   ├── pattern.md     # Explanation, use cases, gotchas
+│   └── example.go     # Runnable demonstration
+├── pattern-name-2/
+│   ├── pattern.md
+│   └── example.go
+└── README.md          # Main index with all patterns
 ```
+
+Each pattern is self-contained in its own directory.
 
 ## Adding New Patterns
 
 When user discovers/requests new pattern:
 
-1. **Create pattern file**: `patterns/<pattern-name>.md`
+1. **Create pattern directory**: `<pattern-name>/`
+   - Use kebab-case (e.g., `worker-pool-pattern`)
+   - Pattern name should be descriptive and searchable
+
+2. **Create pattern.md**:
    - Title with clear description
    - "What it is (and isn't)" section
    - "Where you see it" with use cases
@@ -24,28 +33,21 @@ When user discovers/requests new pattern:
    - "Gotchas" or "Common mistakes" if relevant
    - Keep concise - respect reader's time
 
-2. **Create runnable example**: `examples/<pattern-name>.go`
-   - Standalone, runs with `go run`
+3. **Create example.go**:
+   - Standalone, runs with `go run example.go`
    - Demonstrate core concept
    - Include comments explaining key parts
    - Show multiple variations if helpful
    - Keep under 100 lines when possible
 
-3. **Update indexes**:
-   - Add to `patterns/README.md` pattern list
-   - Add to `examples/README.md` example list
-   - Add to main `README.md` patterns section
-   - Keep alphabetical or logical grouping
-
-4. **Optional cheatsheet**: `cheatsheets/<topic>.md`
-   - Only if pattern is complex or has variants
-   - Single page, printable format
-   - Quick reference tables/code snippets
-   - No long explanations
+4. **Update main README.md**:
+   - Add link to pattern directory in appropriate category
+   - Keep patterns organized by category
+   - Maintain consistent formatting
 
 ## Maintaining Consistency
 
-**Pattern file template:**
+**pattern.md template:**
 
 ````markdown
 # Pattern Name
@@ -64,16 +66,16 @@ Clear explanation. Compare to similar concepts if needed.
 
 ## Real Example
 
-\```go
+```go
 // Working code here
-\```
+```
 
 ## Gotchas
 
 Things to watch out for (optional).
 ````
 
-**Example file template:**
+**example.go template:**
 
 ```go
 package main
@@ -90,14 +92,6 @@ func main() {
 }
 ```
 
-**Cheatsheet template:**
-
-````markdown
-# Topic Quick Reference
-
-## Pattern Name 1
-
-\```go
 // Minimal example
 \```
 
@@ -106,6 +100,7 @@ func main() {
 \```go
 // Minimal example
 \```
+
 ````
 
 ## Sync Rules
@@ -113,9 +108,9 @@ func main() {
 When updating content:
 
 1. **Pattern update** → Check if example needs update
-2. **New pattern** → Always create example + update all READMEs
-3. **Example update** → Sync code snippets in pattern docs
-4. **Pattern deletion** → Remove from all READMEs + delete example
+2. **New pattern** → Create directory with pattern.md + example.go, update main README
+3. **Example update** → Sync code snippets in pattern.md
+4. **Pattern deletion** → Remove directory and update main README
 
 ## Philosophy
 
@@ -152,7 +147,7 @@ Use `maintain.sh` for repo maintenance tasks:
 **After adding/updating patterns:**
 
 ```bash
-./maintain.sh validate   # Check pattern↔example sync
+./maintain.sh validate   # Check all patterns have pattern.md + example.go
 ./maintain.sh check      # Verify all examples compile
 ```
 
@@ -168,21 +163,24 @@ Use `maintain.sh` for repo maintenance tasks:
 ```bash
 ./maintain.sh run-all    # Run all examples (2s timeout each)
 # Or run specific example:
-go run examples/<pattern-name>.go
+cd <pattern-name>/
+go run example.go
 ```
 
 **Available commands:**
 
 - `check` - Compile all examples individually
 - `format` - Run gofmt on all code
-- `validate` - Check patterns have matching examples
+- `validate` - Check patterns have both pattern.md and example.go
 - `run-all` - Execute all examples with timeout
 - `help` - Show command reference
 
 ## Workflow Summary
 
-1. Add pattern + example files
-2. Update all READMEs
-3. Run `./maintain.sh validate` to verify sync
-4. Run `./maintain.sh check` to test compilation
-5. Run `./maintain.sh format` before commit
+1. Create pattern directory: `mkdir <pattern-name>/`
+2. Add `pattern.md` and `example.go` in the directory
+3. Update main `README.md` with link to pattern
+4. Run `./maintain.sh validate` to verify structure
+5. Run `./maintain.sh check` to test compilation
+6. Run `./maintain.sh format` before commit
+````
