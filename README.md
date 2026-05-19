@@ -6,7 +6,7 @@ Advanced Go patterns and techniques discovered while mastering the way of the Go
 
 Collection of Go idioms, patterns, and techniques that aren't always obvious when learning Go. Each pattern includes clear explanations, real-world examples, and gotchas to avoid.
 
-## Patterns (37 Total)
+## Patterns (38 Total)
 
 Each pattern is self-contained in its own directory with documentation (`pattern.md`) and runnable example (`example.go`).
 
@@ -48,6 +48,7 @@ Each pattern is self-contained in its own directory with documentation (`pattern
 - [Singleton with sync.Once](./singleton-sync-once-pattern/) - Thread-safe lazy initialization
 - [Builder Pattern](./builder-pattern/) - Fluent API for complex object construction
 - [Factory Pattern](./factory-pattern/) - Registry of constructors for extensibility
+- [Null Object Pattern](./null-object-pattern/) - No-op implementation instead of nil checks
 
 ### Functional & Declarative
 
