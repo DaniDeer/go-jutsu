@@ -128,6 +128,21 @@ When updating content:
 - Keep examples focused on one concept
 - Avoid external dependencies when possible
 
+## Example Quality Bar
+
+**Use realistic, idiomatic Go scenarios** — not toy examples.
+
+Prefer domain-appropriate examples that a Go developer would actually write:
+
+| Pattern type | Good example domain | Avoid |
+|---|---|---|
+| Higher-order functions | HTTP middleware, retry wrappers, memoization | Text formatters, `add(1)(2)` |
+| Closures | Request counters, ID generators, caches | CSS accumulators, Python ports |
+| Concurrency | Worker pools, rate limiters, pipelines | Artificial sleep loops |
+| Data structures | Config builders, query builders | Abstract `Foo`/`Bar` structs |
+
+When translating examples from other languages (Python, Haskell, etc.), always ask: *"What would a Go developer actually build with this?"* — then use that instead.
+
 ## When Adding Content
 
 Ask yourself:

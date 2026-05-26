@@ -6,13 +6,14 @@ Advanced Go patterns and techniques discovered while mastering the way of the Go
 
 Collection of Go idioms, patterns, and techniques that aren't always obvious when learning Go. Each pattern includes clear explanations, real-world examples, and gotchas to avoid.
 
-## Patterns (38 Total)
+## Patterns (40 Total)
 
 Each pattern is self-contained in its own directory with documentation (`pattern.md`) and runnable example (`example.go`).
 
 ### Foundational Patterns
 
 - [Closure Pattern (Manual "Currying")](./go-closure-currying-pattern/) - HTTP middleware factory using closures
+- [Closure State Pattern](./closure-state-pattern/) - Closures that capture and mutate state between calls
 - [Defer Cleanup Pattern](./defer-cleanup-pattern/) - Stack-based cleanup, LIFO execution (Go-specific)
 - [Empty Struct Signal Pattern](./empty-struct-signal-pattern/) - Zero-byte signaling with `struct{}` (Go-specific)
 - [Zero Values Pattern](./zero-values-pattern/) - Useful zero values by design (Go philosophy)
@@ -53,6 +54,7 @@ Each pattern is self-contained in its own directory with documentation (`pattern
 ### Functional & Declarative
 
 - [Map/Filter/Reduce with Generics](./map-filter-reduce-generics/) - Higher-order functions for transformations (Go 1.18+)
+- [Function Transformation Pattern](./function-transformation-pattern/) - Wrap functions to add retry, timing, or memoization
 - [Pipeline Pattern](./pipeline-pattern/) - Channel-based stream processing with fan-out/fan-in
 - [Function Composition Pattern](./function-composition-pattern/) - Combine functions to build complex operations
 - [Table-Driven Design Pattern](./table-driven-design-pattern/) - Data structures drive logic (idiomatic Go)

@@ -84,3 +84,34 @@ srv := &http.Server{
 ```
 
 Pattern lets you configure behavior at setup time, execute at request time. Separation of concerns.
+
+## Multi-Level Currying
+
+Extend to 3+ levels when arguments belong to different setup stages.
+
+```go
+// buildRequest(method)(url)(headerKey, headerVal) constructs an *http.Request step by step.
+// Each level locks in one part of the config.
+func buildRequest(method string) func(string) func(string, string) (*http.Request, error) {
+    return func(url string) func(string, string) (*http.Request, error) {
+        return func(key, val string) (*http.Request, error) {
+            req, err := http.NewRequest(method, url, nil)
+            if err != nil {
+                return nil, err
+            }
+            req.Header.Set(key, val)
+            return req, nil
+        }
+    }
+}
+
+// Reuse at each level — only pay for what changes
+getJSON := buildRequest("GET")("https://api.example.com/users")
+req, _  := getJSON("Accept", "application/json")
+
+postJSON := buildRequest("POST")("https://api.example.com/users")
+req2, _  := postJSON("Content-Type", "application/json")
+```
+
+Use multi-level currying when arguments naturally group by *when* they're known: at startup, per-request, per-call.
+
