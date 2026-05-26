@@ -122,3 +122,9 @@ See [`.github/copilot-instructions.md`](./.github/copilot-instructions.md) for a
 
 Found a cool pattern? See [CONTRIBUTING.md](./CONTRIBUTING.md). PRs welcome!
 ```
+
+## Useful Resources
+
+- [Effective Go](https://golang.org/doc/effective_go.html) - Official Go best practices
+- [Go Proverbs](https://go-proverbs.github.io/) - Wisdom from Go creators
+- [GoLinuxCloud - GO Guides, Tipps & Tricks](https://www.golinuxcloud.com/getting-started-with-golang/)
