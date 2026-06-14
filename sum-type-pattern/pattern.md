@@ -74,6 +74,21 @@ func (r Result[T]) Unwrap() (T, error) { return r.val, r.err }
 func (r Result[T]) IsOk() bool         { return r.ok }
 ```
 
+## Sum Type vs Union Type
+
+These are related but different concepts:
+
+| | Sum type | Union type (runtime) | Union type (constraint) |
+|---|---|---|---|
+| Set | Closed | Open | Closed |
+| Go tool | Sealed interface | `any` + type switch | `~A \| ~B` constraint |
+| `default` in switch | `panic("unreachable")` | Required | N/A |
+| External variants | Impossible | Always possible | N/A |
+
+Use a sealed interface (sum type) when **you own all variants** and they live in one package. Use `any` (runtime union) when the set is open or caller-controlled. Use generic type-set unions for numeric/comparable type parameters.
+
+See [union-type-pattern](../union-type-pattern/pattern.md) for the full comparison with runnable examples.
+
 ## Gotchas
 
 **No compiler-enforced exhaustiveness**: Go won't warn if you miss a case. The `panic("unreachable")` at the end is the convention — it will surface at runtime if a new variant is added without updating the switch.

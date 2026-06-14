@@ -67,9 +67,9 @@ func main() {
 
 	// chain helper — cleaner when stacking more than two decorators
 	p := chain(printLine,
-		toUppercase,   // outermost: runs last
-		truncate(5),   // innermost: runs first
-		toUppercase,   // also runs before the outer one
+		toUppercase, // outermost: runs last
+		truncate(5), // innermost: runs first
+		toUppercase, // also runs before the outer one
 	)
 	p("hello world") // truncate(5)→"hello" → toUppercase→"HELLO" → toUppercase→"HELLO"
 
