@@ -6,7 +6,7 @@ Advanced Go patterns and techniques discovered while mastering the way of the Go
 
 Collection of Go idioms, patterns, and techniques that aren't always obvious when learning Go. Each pattern includes clear explanations, real-world examples, and gotchas to avoid.
 
-## Patterns (44 Total)
+## Patterns (45 Total)
 
 Each pattern is self-contained in its own directory with documentation (`pattern.md`) and runnable example (`example.go`).
 
@@ -57,6 +57,7 @@ Each pattern is self-contained in its own directory with documentation (`pattern
 - [Decorator Pattern](./decorator-pattern/) - Wrap functions or interfaces to add behavior — Go's equivalent of Python `@decorators`
 - [Parameterized Decorator Pattern](./parameterized-decorator-pattern/) - Decorator factory: captures config at setup time and returns a decorator — Go's equivalent of `@get_truncate(9)`
 - [Function Transformation Pattern](./function-transformation-pattern/) - Wrap functions to add retry, timing, or memoization
+- [Iota Enum Pattern](./iota-enum-pattern/) - Named integer constants with `iota`, `String()`, `Valid()` guard, and bitmask variant — Go's idiomatic enum
 - [Sum Type Pattern](./sum-type-pattern/) - Sealed interface for closed variant sets (approximating algebraic data types)
 - [Union Type Pattern](./union-type-pattern/) - Open runtime union via `any`, and generic type-set constraints (`~A | ~B`) — with comparison to sum types
 - [Pipeline Pattern](./pipeline-pattern/) - Channel-based stream processing with fan-out/fan-in

@@ -87,6 +87,8 @@ These are related but different concepts:
 
 Use a sealed interface (sum type) when **you own all variants** and they live in one package. Use `any` (runtime union) when the set is open or caller-controlled. Use generic type-set unions for numeric/comparable type parameters.
 
+If your variants carry **no data** (just a label), consider a simpler iota enum instead — see [iota-enum-pattern](../iota-enum-pattern/pattern.md).
+
 See [union-type-pattern](../union-type-pattern/pattern.md) for the full comparison with runnable examples.
 
 ## Gotchas
